@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import unocss from "unocss/vite"
-import minify from "vite-plugin-minify"
+import {ViteMinifyPlugin} from "vite-plugin-minify"
 import { getLastCommit } from "git-last-commit"
 
 import type { Commit } from "git-last-commit"
@@ -17,7 +17,7 @@ export default defineConfig(async () => {
     });
 
     return {
-        plugins: [unocss(), minify(),{
+        plugins: [unocss(), ViteMinifyPlugin(),{
             name: "commit-info",
             generateBundle() {
                 console.log(`Last commit: ${commit.shortHash}`);
